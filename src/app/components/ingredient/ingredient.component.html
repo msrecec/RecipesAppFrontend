@@ -1,1 +1,5 @@
-<p>ingredient works!</p>
+<div *ngIf="ingredientPaginated">
+  <div *ngFor="let ingredient of ingredientPaginated.ingredientDTO">
+    {{ingredient.name}}
+  </div>
+</div>
