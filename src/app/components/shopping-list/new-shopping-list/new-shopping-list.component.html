@@ -6,6 +6,13 @@
       <mat-label>Name</mat-label>
       <input [(ngModel)]="name" matInput required>
     </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input [(ngModel)]="date" matInput [matDatepicker]="myDatePicker">
+      <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #myDatePicker></mat-datepicker>
+    </mat-form-field>
+    <br>
     <h3>Select shopping list items</h3>
     <mat-list style="display: inline-block;">
       <mat-list-item *ngFor="let ingredient of ingredients">

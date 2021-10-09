@@ -16,6 +16,7 @@ import { ShoppingListService } from 'src/app/services/shopping-list/shopping-lis
 })
 export class NewShoppingListComponent implements OnInit {
   name!: string;
+  date!: Date;
   ingredientsPaginated?: IngredientPaginated;
   ingredients?: { ingredient: Ingredient; quantity: number }[] = [];
   selectedIngredients: { ingredient: Ingredient; quantity: number }[] = [];
@@ -79,7 +80,7 @@ export class NewShoppingListComponent implements OnInit {
       .postShoppingList(
         new ShoppingListSaveCommand(
           this.name,
-          new Date(),
+          this.date,
           this.shoppingListItems
         )
       )

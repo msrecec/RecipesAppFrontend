@@ -19,11 +19,19 @@ export class ShoppingListItemComponent implements OnInit {
     private route: ActivatedRoute,
     private _location: Location,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private shoppingListService: ShoppingListService
   ) {}
 
   goBack() {
     this._location.back();
+  }
+
+  deleteShoppingList() {
+    this.shoppingListService
+      .deleteShoppingListById(this.shoppingList.id)
+      .subscribe();
+    this.goBack();
   }
 
   openDialog() {

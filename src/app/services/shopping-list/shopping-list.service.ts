@@ -88,14 +88,17 @@ export class ShoppingListService {
   }
 
   deleteShoppingListById(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.shoppingListURL}/id/${id}`).pipe(
-      tap((_) => console.log(`Deleted shopping list with id: ${id}`)),
-      catchError(
-        this.handleError<any>(
-          `Error while deleting shopping list with id: ${id}`
+    console.log('deleting shopping list');
+    return this.http
+      .delete<ShoppingList>(`${this.shoppingListURL}/id/${id}`)
+      .pipe(
+        tap((_) => console.log(`Deleted shopping list with id: ${id}`)),
+        catchError(
+          this.handleError<ShoppingList>(
+            `Error while deleting shopping list with id: ${id}`
+          )
         )
-      )
-    );
+      );
   }
 
   public handleError<T>(operation = 'operation', result?: T) {
