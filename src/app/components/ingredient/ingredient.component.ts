@@ -1,5 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { IngredientPaginated } from 'src/app/model/ingredient-paginated';
+import { IngredientPaginated } from 'src/app/model/ingredient/ingredient-paginated';
 import { IngredientService } from 'src/app/services/ingredient/ingredient.service';
 
 @Component({
