@@ -1,32 +1,32 @@
-.ingredient__list__container {
+.shopping__list__list__container {
   display: flex;
   justify-content: space-between;
 }
 
-.ingredient__list {
+.shopping__list__list {
   padding-top: 50px;
   height: 600px !important;
   width: 350px;
   display: block;
 }
 
-.ingredient__list__card {
+.shopping__list__list__card {
   margin-top: 50px;
   height: 250px;
   width: 300px;
 }
 
-.ingredient__list__item {
+.shopping__list__list__item {
   margin: 10px;
 }
 
-.ingredient__list__button {
+.shopping__list__list__button {
   height: 50px !important;
   margin-top: 100px;
   margin-right: 80px;
 }
 
-.ingredient__list__item a {
+.shopping__list__list__item a {
   width: 300px;
   height: 100%;
   display: flex;
@@ -39,11 +39,11 @@
   cursor: pointer;
 }
 
-.ingredient__list__item a:hover {
+.shopping__list__list__item a:hover {
   color: rgb(197, 108, 123);
 }
 
-.ingredient__list__paginator {
+.shopping__list__list__paginator {
   display: block;
   width: 100% !important;
 }

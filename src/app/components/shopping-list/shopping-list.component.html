@@ -1,0 +1,18 @@
+<div class="shopping_list__container">
+  <div class="shopping__list__list__container">
+    <mat-list class="shopping__list__list" *ngIf="shoppingListPaginated">
+      <mat-list-item class="shopping__list__list__item"
+        *ngFor="let shoppingList of shoppingListPaginated.shoppingListDTO">
+        <a>
+          <h3 matLine>{{shoppingList.name}}</h3>
+        </a>
+      </mat-list-item>
+    </mat-list>
+    <button (click)="addNewShoppingList()" class="shopping__list__list__button" mat-raised-button>Add
+      new Shopping List</button>
+  </div>
+  <mat-paginator *ngIf="shoppingListPaginated" class="shopping__list__list__paginator"
+    [length]="shoppingListPaginated.totalElements" [pageSize]="10" [pageSizeOptions]="[10]" (page)="getPage($event)"
+    aria-label="Select page">
+  </mat-paginator>
+</div>
