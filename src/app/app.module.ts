@@ -16,6 +16,10 @@ import { IngredientResolver } from './components/ingredient/ingredient-item/ingr
 import { NewIngredientComponent } from './components/ingredient/new-ingredient/new-ingredient.component';
 import { EditIngredientComponent } from './components/ingredient/edit-ingredient/edit-ingredient.component';
 import { IngredientDialogComponent } from './components/ingredient/ingredient-item/ingredient-dialog/ingredient-dialog.component';
+import { EditShoppingListComponent } from './components/shopping-list/edit-shopping-list/edit-shopping-list.component';
+import { NewShoppingListComponent } from './components/shopping-list/new-shopping-list/new-shopping-list.component';
+import { ShoppingListItemComponent } from './components/shopping-list/shopping-list-item/shopping-list-item.component';
+import { ShoppingListDialogComponent } from './components/shopping-list/shopping-list-item/shopping-list-dialog/shopping-list-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,10 @@ import { IngredientDialogComponent } from './components/ingredient/ingredient-it
     NewIngredientComponent,
     EditIngredientComponent,
     IngredientDialogComponent,
+    EditShoppingListComponent,
+    NewShoppingListComponent,
+    ShoppingListItemComponent,
+    ShoppingListDialogComponent,
   ],
   imports: [
     BrowserModule,
