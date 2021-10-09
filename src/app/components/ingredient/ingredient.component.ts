@@ -13,7 +13,6 @@ import { IngredientService } from 'src/app/services/ingredient/ingredient.servic
 @Injectable()
 export class IngredientComponent implements OnInit {
   ingredientPaginated!: IngredientPaginated;
-  ingredientCard?: Ingredient;
 
   constructor(
     private ingredientService: IngredientService,
@@ -45,13 +44,5 @@ export class IngredientComponent implements OnInit {
 
   addNewIngredient() {
     this.router.navigate(['ingredient', 'new']);
-  }
-
-  onEnter(ingredient: Ingredient) {
-    this.ingredientCard = ingredient;
-  }
-
-  onLeave() {
-    this.ingredientCard = undefined;
   }
 }
