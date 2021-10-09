@@ -11,6 +11,8 @@ import { IngredientComponent } from './components/ingredient/ingredient.componen
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HttpClientModule } from '@angular/common/http';
+import { IngredientItemComponent } from './components/ingredient/ingredient-item/ingredient-item.component';
+import { IngredientResolver } from './components/ingredient/ingredient-item/ingredient-resolver.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     IngredientComponent,
     ShoppingListComponent,
     NavigationComponent,
+    IngredientItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [IngredientResolver],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

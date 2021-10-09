@@ -30,6 +30,7 @@
   border-radius: 10px;
   padding-left: 10px;
   background-color: aliceblue;
+  cursor: pointer;
 }
 
 .ingredient__list__item a:hover {

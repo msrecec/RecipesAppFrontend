@@ -1,9 +1,9 @@
 <div class="ingredient__container">
   <div class="ingredient__list__container">
     <mat-list class="ingredient__list" *ngIf="ingredientPaginated">
-      <mat-list-item (mouseenter)="onEnter(ingredient)" (mouseleave)="onLeave()" class="ingredient__list__item"
-        *ngFor="let ingredient of ingredientPaginated.ingredientDTO">
-        <a href="#">
+      <mat-list-item (click)="onClick(ingredient)" (mouseenter)="onEnter(ingredient)" (mouseleave)="onLeave()"
+        class="ingredient__list__item" *ngFor="let ingredient of ingredientPaginated.ingredientDTO">
+        <a>
           <h3 matLine>{{ingredient.name}}</h3>
         </a>
       </mat-list-item>
