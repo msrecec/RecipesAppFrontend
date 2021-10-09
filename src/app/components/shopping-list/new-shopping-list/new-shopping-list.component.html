@@ -1,5 +1,4 @@
-<p>new-shopping-list works!</p>
-<mat-card *ngIf="ingredients" class="ingredient__new__card">
+<mat-card style="margin-top: 10px;" *ngIf="ingredients" class="ingredient__new__card">
   <mat-card-title>Add new shopping list</mat-card-title>
   <mat-card-content>
     <h3>Name of the shopping list</h3>
@@ -8,17 +7,28 @@
       <input [(ngModel)]="name" matInput required>
     </mat-form-field>
     <h3>Select shopping list items</h3>
-    <mat-list style="display: inline-block">
+    <mat-list style="display: inline-block;">
       <mat-list-item *ngFor="let ingredient of ingredients">
-        {{ingredient.name}} {{ingredient.id}}
-        <button *ngIf="!isSelected(ingredient)" style="width: 100px; margin-left: 10px" color="primary"
+        <span style="width: 70px;" *ngIf="!isSelected(ingredient.ingredient)">
+          {{ingredient.ingredient.name}} {{ingredient.ingredient.id}}
+        </span>
+        <mat-form-field style="width: 100px;" *ngIf="!isSelected(ingredient.ingredient)">
+          <mat-label>Quantity</mat-label>
+          <input type="number" matInput [(ngModel)]="ingredient.quantity">
+        </mat-form-field>
+        <button *ngIf="!isSelected(ingredient.ingredient)" style="width: 100px; margin-left: 10px" color="primary"
           mat-raised-button (click)="addIngredient(ingredient)">
           Add</button>
       </mat-list-item>
     </mat-list>
-    <mat-list style="display: inline-block" *ngIf="selectedIngredients">
+    <mat-list style="display: inline-block;" *ngIf="selectedIngredients">
       <mat-list-item *ngFor="let ingredient of selectedIngredients">
-        {{ingredient.name}} {{ingredient.id}}
+        <span style="width: 100px;">
+          {{ingredient.ingredient.name}} {{ingredient.ingredient.id}}
+        </span>
+        <span>
+          quantity: {{ingredient.quantity}}
+        </span>
         <button style="width: 100px; margin-left: 10px" color="warn" mat-raised-button
           (click)="removeIngredient(ingredient)">
           Remove</button>
@@ -30,9 +40,9 @@
     </mat-paginator>
   </mat-card-content>
   <mat-card-content>
-    <div class="ingredient__new__card__button__container">
-      <button (click)="goBack()" mat-flat-button color="accent">Cancel</button>
-      <button (click)="save()" mat-flat-button color="primary">Save</button>
+    <div class="ingredient__new__card__button__container" style="display: flex;">
+      <button style="width: 70px; margin: 1px;" (click)="goBack()" mat-flat-button color="accent">Cancel</button>
+      <button style="width: 70px; margin: 1px;" (click)="save()" mat-flat-button color="primary">Save</button>
     </div>
   </mat-card-content>
 </mat-card>
