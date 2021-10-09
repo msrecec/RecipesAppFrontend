@@ -1,5 +1,10 @@
-<div *ngIf="ingredientPaginated">
-  <div *ngFor="let ingredient of ingredientPaginated.ingredientDTO">
-    {{ingredient.name}}
-  </div>
-</div>
+<mat-list class="ingredient__list" *ngIf="ingredientPaginated">
+  <mat-list-item class="ingredient__list__item" *ngFor="let ingredient of ingredientPaginated.ingredientDTO">
+    <a href="#">
+      <h3 matLine>{{ingredient.name}}</h3>
+    </a>
+  </mat-list-item>
+  <mat-paginator class="ingredient__list__paginator" [length]="ingredientPaginated.totalElements" [pageSize]="10"
+    [pageSizeOptions]="[10]" (page)="getPage($event)" aria-label="Select page">
+  </mat-paginator>
+</mat-list>

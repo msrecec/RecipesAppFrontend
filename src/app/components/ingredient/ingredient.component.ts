@@ -1,4 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { IngredientPaginated } from 'src/app/model/ingredient/ingredient-paginated';
 import { IngredientService } from 'src/app/services/ingredient/ingredient.service';
 
@@ -16,6 +17,15 @@ export class IngredientComponent implements OnInit {
   ngOnInit(): void {
     this.ingredientService
       .getIngredientsPaginated()
+      .subscribe((ingredientsPaginated) => {
+        this.ingredientPaginated = ingredientsPaginated;
+        console.log(this.ingredientPaginated);
+      });
+  }
+
+  getPage(pageEvent: PageEvent): void {
+    this.ingredientService
+      .getIngredientsPaginated(pageEvent.pageIndex)
       .subscribe((ingredientsPaginated) => {
         this.ingredientPaginated = ingredientsPaginated;
         console.log(this.ingredientPaginated);

@@ -1,0 +1,25 @@
+.ingredient__list {
+  padding-top: 50px;
+  height: 600px !important;
+  width: 300px;
+}
+
+.ingredient__list__item {
+  margin: 10px;
+}
+
+.ingredient__list__item a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none !important;
+  color: black;
+  border-radius: 10px;
+  padding-left: 10px;
+  background-color: aliceblue;
+}
+
+.ingredient__list__item a:hover {
+  color: rgb(197, 108, 123);
+}
