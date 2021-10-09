@@ -4,8 +4,20 @@
     <mat-card-subtitle>Total Price HRK: {{shoppingList.totalPriceHrk}}kn</mat-card-subtitle>
     <mat-card-subtitle>Total Price EUR: {{shoppingList.totalPriceEur}}eur</mat-card-subtitle>
     <mat-card-content>
-      <h3>Shopping list content</h3>
-
+      <h3>List of ingredients</h3>
+      <div class="ingredient__container">
+        <div class="ingredient__list__container">
+          <mat-list class="ingredient__list" *ngIf="shoppingList">
+            <mat-list-item (click)="onClick(shoppingListItem.ingredientDTO)" class="ingredient__list__item"
+              *ngFor="let shoppingListItem of shoppingList.shoppingListItemDTO">
+              <a>
+                <h3 style="width:100%" matLine>{{shoppingListItem.ingredientDTO.name}}</h3>
+                <h3 style="width:100%" matLine>Quantity: {{shoppingListItem.quantity}}</h3>
+              </a>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
       <button mat-raised-button color="accent" (click)="goBack()">Go back</button>
     </mat-card-content>
   </mat-card>

@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Data, Router } from '@angular/router';
+import { Ingredient } from 'src/app/model/ingredient/ingredient';
 import { ShoppingList } from 'src/app/model/shopping-list/shopping-list';
 import { ShoppingListService } from 'src/app/services/shopping-list/shopping-list.service';
 import { ShoppingListDialogComponent } from './shopping-list-dialog/shopping-list-dialog.component';
@@ -36,6 +37,11 @@ export class ShoppingListItemComponent implements OnInit {
 
   editShoppingList() {
     this.router.navigate(['shopping-list', 'edit', this.shoppingList.id]);
+  }
+
+  onClick(ingredient: Ingredient) {
+    console.log(ingredient);
+    this.router.navigate(['ingredient', ingredient.id]);
   }
 
   ngOnInit(): void {
