@@ -12,6 +12,7 @@
       <mat-card-title>Name: {{ingredientCard.name}}</mat-card-title>
       <mat-card-content>Price: {{ingredientCard.priceHrk}}kn</mat-card-content>
     </mat-card>
+    <button *ngIf="!ingredientCard" class="ingredient__list__button" mat-raised-button>Add new Ingredient</button>
   </div>
   <mat-paginator *ngIf="ingredientPaginated" class="ingredient__list__paginator"
     [length]="ingredientPaginated.totalElements" [pageSize]="10" [pageSizeOptions]="[10]" (page)="getPage($event)"

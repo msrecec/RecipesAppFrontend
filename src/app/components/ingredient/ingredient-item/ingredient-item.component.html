@@ -1,10 +1,16 @@
-<mat-card *ngIf="ingredient" class="ingredient__list__card">
-  <mat-card-title>{{ingredient.name}}</mat-card-title>
-  <mat-card-subtitle>Price: {{ingredient.priceHrk}}kn</mat-card-subtitle>
-  <mat-card-content>
-    <h3>Description:</h3>
-    <p>{{ingredient.description}}</p>
-    <p>Rating: {{ingredient.rating}}</p>
-    <a (click)="goBack()">Go back</a>
-  </mat-card-content>
-</mat-card>
+<div>
+  <mat-card *ngIf="ingredient" class="ingredient__list__card">
+    <mat-card-title>{{ingredient.name}}</mat-card-title>
+    <mat-card-subtitle>Price: {{ingredient.priceHrk}}kn</mat-card-subtitle>
+    <mat-card-content>
+      <h3>Description:</h3>
+      <p>{{ingredient.description}}</p>
+      <p>Rating: {{ingredient.rating}}</p>
+      <button mat-raised-button color="accent" (click)="goBack()">Go back</button>
+    </mat-card-content>
+  </mat-card>
+  <div class="ingredient__card__button__container">
+    <button (click)="deleteIngredient()" mat-raised-button color="warn">Delete</button>
+    <button mat-raised-button color="primary">Edit</button>
+  </div>
+</div>

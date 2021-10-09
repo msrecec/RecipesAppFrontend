@@ -5,3 +5,10 @@ a {
 .ingredient__list__card {
   margin-top: 20px;
 }
+
+.ingredient__card__button__container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
+}

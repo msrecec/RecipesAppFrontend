@@ -1,7 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
+import { catchError, tap } from 'rxjs/operators';
 import { Ingredient } from 'src/app/model/ingredient/ingredient';
+import { IngredientService } from 'src/app/services/ingredient/ingredient.service';
 
 @Component({
   selector: 'app-ingredient-item',
@@ -11,7 +13,11 @@ import { Ingredient } from 'src/app/model/ingredient/ingredient';
 export class IngredientItemComponent implements OnInit {
   @Input() ingredient!: Ingredient;
 
-  constructor(private route: ActivatedRoute, private _location: Location) {
+  constructor(
+    private route: ActivatedRoute,
+    private _location: Location,
+    private ingredientsService: IngredientService
+  ) {
     this.route.data.subscribe((data: Data) => {
       this.ingredient = data['ingredient'];
     });
@@ -19,6 +25,24 @@ export class IngredientItemComponent implements OnInit {
 
   goBack() {
     this._location.back();
+  }
+
+  deleteIngredient() {
+    this.ingredientsService
+      .deleteIngredientById(this.ingredient.id)
+      .pipe(
+        tap((_) =>
+          console.log(`Deleted ingredient with id: ${this.ingredient.id}`)
+        ),
+        catchError(
+          this.ingredientsService.handleError<Ingredient>(
+            `error while deleting ingredient with id: ${this.ingredient.id}`
+          )
+        )
+      )
+      .subscribe(() => {
+        this.goBack();
+      });
   }
 
   ngOnInit(): void {}
