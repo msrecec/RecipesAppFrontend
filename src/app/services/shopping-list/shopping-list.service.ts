@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { ShoppingListSaveCommand } from 'src/app/command/shopping-list/shopping-list-save-command';
+import { ShoppingListUpdateCommand } from 'src/app/command/shopping-list/shopping-list-update-command';
 import { ShoppingList } from 'src/app/model/shopping-list/shopping-list';
 import { ShoppingListPaginated } from 'src/app/model/shopping-list/shopping-list-paginated';
 
@@ -43,6 +45,57 @@ export class ShoppingListService {
           )
         )
       );
+  }
+
+  updateShoppingList(
+    shoppingListUpdateCommand: ShoppingListUpdateCommand
+  ): Observable<any> {
+    return this.http
+      .put(this.shoppingListURL, shoppingListUpdateCommand, this.httpOptions)
+      .pipe(
+        tap((_) =>
+          console.log(
+            `Updated shopping list with id: ${shoppingListUpdateCommand.id}`
+          )
+        ),
+        catchError(
+          this.handleError<any>(
+            `Error while updating shopping list with id: ${shoppingListUpdateCommand.id}`
+          )
+        )
+      );
+  }
+
+  postShoppingList(shoppingListSaveCommand: ShoppingListSaveCommand) {
+    return this.http
+      .post<any>(
+        this.shoppingListURL,
+        shoppingListSaveCommand,
+        this.httpOptions
+      )
+      .pipe(
+        tap((_) =>
+          console.log(
+            `Posted shopping list with name: ${shoppingListSaveCommand.name}`
+          )
+        ),
+        catchError(
+          this.handleError<any>(
+            `Error while posting shopping list with name ${shoppingListSaveCommand.name}`
+          )
+        )
+      );
+  }
+
+  deleteShoppingListById(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.shoppingListURL}/id/${id}`).pipe(
+      tap((_) => console.log(`Deleted shopping list with id: ${id}`)),
+      catchError(
+        this.handleError<any>(
+          `Error while deleting shopping list with id: ${id}`
+        )
+      )
+    );
   }
 
   public handleError<T>(operation = 'operation', result?: T) {
