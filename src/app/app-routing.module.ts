@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditIngredientComponent } from './components/ingredient/edit-ingredient/edit-ingredient.component';
 import { IngredientItemComponent } from './components/ingredient/ingredient-item/ingredient-item.component';
 import { IngredientResolver } from './components/ingredient/ingredient-item/ingredient-resolver.service';
 import { IngredientComponent } from './components/ingredient/ingredient.component';
@@ -12,6 +13,11 @@ const routes: Routes = [
   { path: 'recipe', component: RecipeComponent },
   { path: 'ingredient', component: IngredientComponent },
   { path: 'ingredient/new', component: NewIngredientComponent },
+  {
+    path: 'ingredient/edit/:id',
+    component: EditIngredientComponent,
+    resolve: { ingredient: IngredientResolver },
+  },
   {
     path: 'ingredient/:id',
     component: IngredientItemComponent,

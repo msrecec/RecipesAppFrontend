@@ -1,0 +1,19 @@
+.ingredient__new__card {
+  margin-top: 20px;
+}
+
+.ingredient__new__card__description {
+  display: block;
+  width: 30%;
+}
+
+.ingredient__new__card__name {
+  display: block;
+  width: 30%;
+}
+
+.ingredient__new__card__button__container {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+}

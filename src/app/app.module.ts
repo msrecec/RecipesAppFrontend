@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IngredientItemComponent } from './components/ingredient/ingredient-item/ingredient-item.component';
 import { IngredientResolver } from './components/ingredient/ingredient-item/ingredient-resolver.service';
 import { NewIngredientComponent } from './components/ingredient/new-ingredient/new-ingredient.component';
+import { EditIngredientComponent } from './components/ingredient/edit-ingredient/edit-ingredient.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NewIngredientComponent } from './components/ingredient/new-ingredient/n
     NavigationComponent,
     IngredientItemComponent,
     NewIngredientComponent,
+    EditIngredientComponent,
   ],
   imports: [
     BrowserModule,
