@@ -43,6 +43,10 @@ export class IngredientComponent implements OnInit {
     this.router.navigate(['ingredient', ingredient.id]);
   }
 
+  addNewIngredient() {
+    this.router.navigate(['ingredient', 'new']);
+  }
+
   onEnter(ingredient: Ingredient) {
     this.ingredientCard = ingredient;
   }

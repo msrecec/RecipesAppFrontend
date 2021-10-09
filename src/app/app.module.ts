@@ -13,6 +13,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { HttpClientModule } from '@angular/common/http';
 import { IngredientItemComponent } from './components/ingredient/ingredient-item/ingredient-item.component';
 import { IngredientResolver } from './components/ingredient/ingredient-item/ingredient-resolver.service';
+import { NewIngredientComponent } from './components/ingredient/new-ingredient/new-ingredient.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { IngredientResolver } from './components/ingredient/ingredient-item/ingr
     ShoppingListComponent,
     NavigationComponent,
     IngredientItemComponent,
+    NewIngredientComponent,
   ],
   imports: [
     BrowserModule,
