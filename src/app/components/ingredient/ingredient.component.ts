@@ -1,5 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Ingredient } from 'src/app/model/ingredient/ingredient';
 import { IngredientPaginated } from 'src/app/model/ingredient/ingredient-paginated';
 import { IngredientService } from 'src/app/services/ingredient/ingredient.service';
 
@@ -11,6 +12,7 @@ import { IngredientService } from 'src/app/services/ingredient/ingredient.servic
 @Injectable()
 export class IngredientComponent implements OnInit {
   ingredientPaginated!: IngredientPaginated;
+  ingredientCard?: Ingredient;
 
   constructor(private ingredientService: IngredientService) {}
 
@@ -30,5 +32,13 @@ export class IngredientComponent implements OnInit {
         this.ingredientPaginated = ingredientsPaginated;
         console.log(this.ingredientPaginated);
       });
+  }
+
+  onEnter(ingredient: Ingredient) {
+    this.ingredientCard = ingredient;
+  }
+
+  onLeave() {
+    this.ingredientCard = undefined;
   }
 }
