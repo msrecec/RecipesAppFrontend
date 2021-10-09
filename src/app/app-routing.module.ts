@@ -32,7 +32,7 @@ const routes: Routes = [
   {
     path: 'shopping-list/edit/:id',
     component: EditShoppingListComponent,
-    resolve: { shoppingList: ShoppingListComponent },
+    resolve: { shoppingList: ShoppingListResolver },
   },
   {
     path: 'shopping-list/:id',

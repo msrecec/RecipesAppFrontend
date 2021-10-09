@@ -1,1 +1,55 @@
-<p>edit-shopping-list works!</p>
+<mat-card style="margin-top: 10px;" *ngIf="shoppingList" class="ingredient__new__card">
+  <mat-card-title>Add new shopping list</mat-card-title>
+  <mat-card-content>
+    <h3>Name of the shopping list</h3>
+    <mat-form-field class="ingredient__new__card__name" floatLabel="auto" appearance="fill" color="primary">
+      <mat-label>Name</mat-label>
+      <input [(ngModel)]="shoppingList.name" matInput required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input [(ngModel)]="shoppingList.date" matInput [matDatepicker]="myDatePicker">
+      <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #myDatePicker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <h3>Select shopping list items</h3>
+    <mat-list style="display: inline-block;">
+      <mat-list-item *ngFor="let ingredient of ingredients">
+        <span style="width: 70px;" *ngIf="!isSelected(ingredient.ingredient)">
+          {{ingredient.ingredient.name}} {{ingredient.ingredient.id}}
+        </span>
+        <mat-form-field style="width: 100px;" *ngIf="!isSelected(ingredient.ingredient)">
+          <mat-label>Quantity</mat-label>
+          <input min="1" type="number" matInput [(ngModel)]="ingredient.quantity">
+        </mat-form-field>
+        <button *ngIf="!isSelected(ingredient.ingredient)" style="width: 100px; margin-left: 10px" color="primary"
+          mat-raised-button (click)="addIngredient(ingredient)">
+          Add</button>
+      </mat-list-item>
+    </mat-list>
+    <mat-list style="display: inline-block;" *ngIf="selectedIngredients">
+      <mat-list-item *ngFor="let ingredient of selectedIngredients">
+        <span style="width: 100px;">
+          {{ingredient.ingredient.name}} {{ingredient.ingredient.id}}
+        </span>
+        <span>
+          quantity: {{ingredient.quantity}}
+        </span>
+        <button style="width: 100px; margin-left: 10px" color="warn" mat-raised-button
+          (click)="removeIngredient(ingredient)">
+          Remove</button>
+      </mat-list-item>
+    </mat-list>
+    <mat-paginator style="display: block" *ngIf="ingredientsPaginated" class="ingredient__list__paginator"
+      [length]="ingredientsPaginated.totalElements" [pageSize]="10" [pageSizeOptions]="[10]" (page)="getPage($event)"
+      aria-label="Select page">
+    </mat-paginator>
+  </mat-card-content>
+  <mat-card-content>
+    <div class="ingredient__new__card__button__container" style="display: flex;">
+      <button style="width: 70px; margin: 1px;" (click)="goBack()" mat-flat-button color="accent">Cancel</button>
+      <button style="width: 70px; margin: 1px;" (click)="save()" mat-flat-button color="primary">Save</button>
+    </div>
+  </mat-card-content>
+</mat-card>

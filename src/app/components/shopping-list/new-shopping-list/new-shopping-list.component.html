@@ -21,7 +21,7 @@
         </span>
         <mat-form-field style="width: 100px;" *ngIf="!isSelected(ingredient.ingredient)">
           <mat-label>Quantity</mat-label>
-          <input type="number" matInput [(ngModel)]="ingredient.quantity">
+          <input min="1" type="number" matInput [(ngModel)]="ingredient.quantity">
         </mat-form-field>
         <button *ngIf="!isSelected(ingredient.ingredient)" style="width: 100px; margin-left: 10px" color="primary"
           mat-raised-button (click)="addIngredient(ingredient)">

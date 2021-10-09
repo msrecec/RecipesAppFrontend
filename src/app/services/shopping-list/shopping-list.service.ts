@@ -47,7 +47,7 @@ export class ShoppingListService {
       );
   }
 
-  updateShoppingList(
+  putShoppingList(
     shoppingListUpdateCommand: ShoppingListUpdateCommand
   ): Observable<any> {
     return this.http
