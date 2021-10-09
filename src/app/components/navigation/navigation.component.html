@@ -1,18 +1,18 @@
 <mat-toolbar color="primary" class="navbar">
   <div class="navbar_div">
     <div style="display: inline-block;">
-      <button mat-button>
-        <a routerLink="/recipe"> Recipe</a>
+      <button routerLink="/recipe" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" mat-button>
+        <a> Recipe</a>
       </button>
     </div>
     <div style="display: inline-block;">
-      <button mat-button>
-        <a routerLink="/ingredient"> Ingredient</a>
+      <button routerLink="/ingredient" routerLinkActive="active" mat-button>
+        <a> Ingredient</a>
       </button>
     </div>
     <div style="display: inline-block;">
-      <button mat-button>
-        <a routerLink="/shopping-list"> Shopping list</a>
+      <button routerLink="/shopping-list" routerLinkActive="active" mat-button>
+        <a> Shopping list</a>
       </button>
     </div>
   </div>
