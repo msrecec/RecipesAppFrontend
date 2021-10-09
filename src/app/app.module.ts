@@ -15,6 +15,7 @@ import { IngredientItemComponent } from './components/ingredient/ingredient-item
 import { IngredientResolver } from './components/ingredient/ingredient-item/ingredient-resolver.service';
 import { NewIngredientComponent } from './components/ingredient/new-ingredient/new-ingredient.component';
 import { EditIngredientComponent } from './components/ingredient/edit-ingredient/edit-ingredient.component';
+import { IngredientDialogComponent } from './components/ingredient/ingredient-item/ingredient-dialog/ingredient-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { EditIngredientComponent } from './components/ingredient/edit-ingredient
     IngredientItemComponent,
     NewIngredientComponent,
     EditIngredientComponent,
+    IngredientDialogComponent,
   ],
   imports: [
     BrowserModule,

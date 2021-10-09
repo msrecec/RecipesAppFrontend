@@ -1,9 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { Ingredient } from 'src/app/model/ingredient/ingredient';
 import { IngredientService } from 'src/app/services/ingredient/ingredient.service';
+import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component';
 
 @Component({
   selector: 'app-ingredient-item',
@@ -17,7 +19,8 @@ export class IngredientItemComponent implements OnInit {
     private route: ActivatedRoute,
     private _location: Location,
     private ingredientsService: IngredientService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {
     this.route.data.subscribe((data: Data) => {
       this.ingredient = data['ingredient'];
@@ -28,22 +31,13 @@ export class IngredientItemComponent implements OnInit {
     this._location.back();
   }
 
-  deleteIngredient() {
-    this.ingredientsService
-      .deleteIngredientById(this.ingredient.id)
-      .pipe(
-        tap((_) =>
-          console.log(`Deleted ingredient with id: ${this.ingredient.id}`)
-        ),
-        catchError(
-          this.ingredientsService.handleError<Ingredient>(
-            `error while deleting ingredient with id: ${this.ingredient.id}`
-          )
-        )
-      )
-      .subscribe(() => {
-        this.goBack();
-      });
+  openDialog() {
+    let dialogRef = this.dialog.open(IngredientDialogComponent, {
+      data: this.ingredient,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   editIngredient() {
