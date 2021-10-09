@@ -1,4 +1,9 @@
-export interface ShoppingListItemNestedSaveCommand {
+export class ShoppingListItemNestedSaveCommand {
   id: number;
   quantity: number;
+
+  constructor(id: number, quantity: number) {
+    this.id = id;
+    this.quantity = quantity;
+  }
 }
