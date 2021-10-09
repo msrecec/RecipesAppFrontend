@@ -20,6 +20,7 @@ import { EditShoppingListComponent } from './components/shopping-list/edit-shopp
 import { NewShoppingListComponent } from './components/shopping-list/new-shopping-list/new-shopping-list.component';
 import { ShoppingListItemComponent } from './components/shopping-list/shopping-list-item/shopping-list-item.component';
 import { ShoppingListDialogComponent } from './components/shopping-list/shopping-list-item/shopping-list-dialog/shopping-list-dialog.component';
+import { ShoppingListResolver } from './components/shopping-list/shopping-list-item/shopping-list-resolver.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { ShoppingListDialogComponent } from './components/shopping-list/shopping
     FormsModule,
     HttpClientModule,
   ],
-  providers: [IngredientResolver],
+  providers: [IngredientResolver, ShoppingListResolver],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

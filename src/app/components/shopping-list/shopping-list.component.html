@@ -1,7 +1,7 @@
 <div class="shopping_list__container">
   <div class="shopping__list__list__container">
     <mat-list class="shopping__list__list" *ngIf="shoppingListPaginated">
-      <mat-list-item class="shopping__list__list__item"
+      <mat-list-item (click)="onClick(shoppingList)" class="shopping__list__list__item"
         *ngFor="let shoppingList of shoppingListPaginated.shoppingListDTO">
         <a>
           <h3 matLine>{{shoppingList.name}}</h3>

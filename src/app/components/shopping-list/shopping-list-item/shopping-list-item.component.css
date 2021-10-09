@@ -1,0 +1,14 @@
+a {
+  cursor: pointer;
+}
+
+.shopping__list__list__card {
+  margin-top: 20px;
+}
+
+.shopping__list__card__button__container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
+}
