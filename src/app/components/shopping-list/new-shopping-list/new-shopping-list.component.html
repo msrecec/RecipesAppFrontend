@@ -1,25 +1,30 @@
 <mat-card style="margin-top: 10px;" *ngIf="ingredients" class="ingredient__new__card">
   <mat-card-title>Add new shopping list</mat-card-title>
   <mat-card-content>
-    <h3>Name of the shopping list</h3>
-    <mat-form-field class="ingredient__new__card__name" floatLabel="auto" appearance="fill" color="primary">
-      <mat-label>Name</mat-label>
-      <input [(ngModel)]="name" matInput required>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input [(ngModel)]="date" matInput [matDatepicker]="myDatePicker">
-      <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
-      <mat-datepicker #myDatePicker></mat-datepicker>
-    </mat-form-field>
+    <form [formGroup]="saveForm">
+      <h3>Name of the shopping list</h3>
+      <mat-form-field class="ingredient__new__card__name" floatLabel="auto" appearance="fill" color="primary">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" [(ngModel)]="name" matInput required>
+        <span *ngIf="!saveForm?.get('name')?.valid && saveForm?.get('name')?.touched">
+          <span *ngIf=""></span>
+        </span>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input formControlName="date" [(ngModel)]="date" matInput [matDatepicker]="myDatePicker">
+        <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #myDatePicker></mat-datepicker>
+      </mat-form-field>
+    </form>
     <br>
     <h3>Select shopping list items</h3>
     <mat-list style="display: inline-block;">
       <mat-list-item *ngFor="let ingredient of ingredients">
-        <span style="width: 70px;" *ngIf="!isSelected(ingredient.ingredient)">
+        <span style="width: 70px;">
           {{ingredient.ingredient.name}} {{ingredient.ingredient.id}}
         </span>
-        <mat-form-field style="width: 100px;" *ngIf="!isSelected(ingredient.ingredient)">
+        <mat-form-field style="width: 100px;">
           <mat-label>Quantity</mat-label>
           <input min="1" type="number" matInput [(ngModel)]="ingredient.quantity">
         </mat-form-field>

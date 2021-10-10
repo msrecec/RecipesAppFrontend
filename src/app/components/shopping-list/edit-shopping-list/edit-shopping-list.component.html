@@ -16,10 +16,10 @@
     <h3>Select shopping list items</h3>
     <mat-list style="display: inline-block;">
       <mat-list-item *ngFor="let ingredient of ingredients">
-        <span style="width: 70px;" *ngIf="!isSelected(ingredient.ingredient)">
+        <span style="width: 70px;">
           {{ingredient.ingredient.name}} {{ingredient.ingredient.id}}
         </span>
-        <mat-form-field style="width: 100px;" *ngIf="!isSelected(ingredient.ingredient)">
+        <mat-form-field style="width: 100px;">
           <mat-label>Quantity</mat-label>
           <input min="1" type="number" matInput [(ngModel)]="ingredient.quantity">
         </mat-form-field>

@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnChanges, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { ShoppingListItemNestedSaveCommand } from 'src/app/command/shopping-list/nested/shopping-list-item-nested-save-command';
 import { ShoppingListSaveCommand } from 'src/app/command/shopping-list/shopping-list-save-command';
@@ -15,6 +16,8 @@ import { ShoppingListService } from 'src/app/services/shopping-list/shopping-lis
   styleUrls: ['./new-shopping-list.component.css'],
 })
 export class NewShoppingListComponent implements OnInit {
+  valid: boolean = false;
+  saveForm: FormGroup = new FormGroup({});
   name!: string;
   date!: Date;
   ingredientsPaginated?: IngredientPaginated;
@@ -70,26 +73,54 @@ export class NewShoppingListComponent implements OnInit {
   }
 
   save() {
-    this.selectedIngredients.forEach((i) => {
-      this.shoppingListItems.push(
-        new ShoppingListItemNestedSaveCommand(i.ingredient.id, i.quantity)
-      );
-    });
-
-    this.shoppingListService
-      .postShoppingList(
-        new ShoppingListSaveCommand(
-          this.name,
-          this.date,
-          this.shoppingListItems
-        )
-      )
-      .subscribe(() => {
-        this._location.back();
+    if (this.valid) {
+      this.selectedIngredients.forEach((i) => {
+        this.shoppingListItems.push(
+          new ShoppingListItemNestedSaveCommand(i.ingredient.id, i.quantity)
+        );
       });
+
+      this.shoppingListService
+        .postShoppingList(
+          new ShoppingListSaveCommand(
+            this.name,
+            this.date,
+            this.shoppingListItems
+          )
+        )
+        .subscribe(() => {
+          this._location.back();
+        });
+      this.saveForm.reset();
+      this.valid = false;
+    }
   }
 
+  // formSize(control: FormControl): { [s: string]: boolean } {
+  //   if (control.value <= 3 || control.value >= 50) {
+  //     return { sizeIsInvalid: true };
+  //   }
+  //   return null;
+  // }
+
   ngOnInit(): void {
+    this.saveForm = new FormGroup({
+      name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+      ]),
+      date: new FormControl(null, [Validators.required]),
+    });
+
+    this.saveForm.statusChanges.subscribe((value) => {
+      if (value == 'VALID') {
+        this.valid = true;
+      } else {
+        this.valid = false;
+      }
+    });
+
     this.ingredientService
       .getIngredientsPaginated()
       .subscribe((ingredientsPaginated) => {
