@@ -21,6 +21,10 @@ import { NewShoppingListComponent } from './components/shopping-list/new-shoppin
 import { ShoppingListItemComponent } from './components/shopping-list/shopping-list-item/shopping-list-item.component';
 import { ShoppingListDialogComponent } from './components/shopping-list/shopping-list-item/shopping-list-dialog/shopping-list-dialog.component';
 import { ShoppingListResolver } from './components/shopping-list/shopping-list-item/shopping-list-resolver.service';
+import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe.component';
+import { NewRecipeComponent } from './components/recipe/new-recipe/new-recipe.component';
+import { RecipeItemComponent } from './components/recipe/recipe-item/recipe-item.component';
+import { RecipeDialogComponent } from './components/recipe/recipe-item/recipe-dialog/recipe-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { ShoppingListResolver } from './components/shopping-list/shopping-list-i
     NewShoppingListComponent,
     ShoppingListItemComponent,
     ShoppingListDialogComponent,
+    EditRecipeComponent,
+    NewRecipeComponent,
+    RecipeItemComponent,
+    RecipeDialogComponent,
   ],
   imports: [
     BrowserModule,
