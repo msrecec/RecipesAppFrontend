@@ -20,7 +20,11 @@ const routes: Routes = [
   { path: '', redirectTo: 'recipe', pathMatch: 'full' },
   { path: 'recipe', component: RecipeComponent },
   { path: 'recipe/new', component: NewRecipeComponent },
-  { path: 'recipe/edit/:id', component: EditRecipeComponent },
+  {
+    path: 'recipe/edit/:id',
+    component: EditRecipeComponent,
+    resolve: { recipe: RecipeResolver },
+  },
   {
     path: 'recipe/:id',
     component: RecipeItemComponent,
