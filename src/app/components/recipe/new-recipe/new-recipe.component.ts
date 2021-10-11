@@ -18,7 +18,6 @@ import { RecipeService } from 'src/app/services/recipe/recipe.service';
   styleUrls: ['./new-recipe.component.css'],
 })
 export class NewRecipeComponent implements OnInit {
-  saveForm: FormGroup = new FormGroup({});
   name!: string;
   shortDescription!: string;
   description!: string;
@@ -93,7 +92,6 @@ export class NewRecipeComponent implements OnInit {
       .subscribe(() => {
         this._location.back();
       });
-    this.saveForm.reset();
   }
 
   // formSize(control: FormControl): { [s: string]: boolean } {

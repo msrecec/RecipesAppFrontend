@@ -42,7 +42,7 @@ export class RecipeItemComponent implements OnInit {
   }
 
   editShoppingList() {
-    // this.router.navigate(['shopping-list', 'edit', this.shoppingList.id]);
+    this.router.navigate(['recipe', 'edit', this.recipe.id]);
   }
 
   onClick(ingredient: Ingredient) {

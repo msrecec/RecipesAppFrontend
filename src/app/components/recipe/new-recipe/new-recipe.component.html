@@ -5,9 +5,6 @@
     <mat-form-field class="ingredient__new__card__name" floatLabel="auto" appearance="fill" color="primary">
       <mat-label>Name</mat-label>
       <input [(ngModel)]="name" matInput required>
-      <span *ngIf="!saveForm?.get('name')?.valid && saveForm?.get('name')?.touched">
-        <span *ngIf=""></span>
-      </span>
     </mat-form-field>
     <br>
     <mat-form-field class="ingredient__new__card__short__description" appearance="fill">
