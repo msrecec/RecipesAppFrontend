@@ -27,8 +27,9 @@ export class RecipeItemComponent implements OnInit {
   }
 
   deleteShoppingList() {
-    // this.recipeService.deleteShoppingListById(this.shoppingList.id).subscribe();
-    this.goBack();
+    this.recipeService.deleteRecipeById(this.recipe.id).subscribe((back) => {
+      this.goBack();
+    });
   }
 
   openDialog() {
