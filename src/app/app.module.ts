@@ -25,6 +25,7 @@ import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe
 import { NewRecipeComponent } from './components/recipe/new-recipe/new-recipe.component';
 import { RecipeItemComponent } from './components/recipe/recipe-item/recipe-item.component';
 import { RecipeDialogComponent } from './components/recipe/recipe-item/recipe-dialog/recipe-dialog.component';
+import { RecipeResolver } from './components/recipe/recipe-item/recipe-resolver.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { RecipeDialogComponent } from './components/recipe/recipe-item/recipe-di
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [IngredientResolver, ShoppingListResolver],
+  providers: [IngredientResolver, ShoppingListResolver, RecipeResolver],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
