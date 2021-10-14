@@ -1,6 +1,11 @@
 <mat-toolbar color="primary" class="navbar">
   <div class="navbar_div">
     <div style="display: inline-block;">
+      <button routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" mat-button>
+        <a> Login</a>
+      </button>
+    </div>
+    <div style="display: inline-block;">
       <button routerLink="/recipe" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" mat-button>
         <a> Recipe</a>
       </button>

@@ -26,6 +26,7 @@ import { NewRecipeComponent } from './components/recipe/new-recipe/new-recipe.co
 import { RecipeItemComponent } from './components/recipe/recipe-item/recipe-item.component';
 import { RecipeDialogComponent } from './components/recipe/recipe-item/recipe-dialog/recipe-dialog.component';
 import { RecipeResolver } from './components/recipe/recipe-item/recipe-resolver.service';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { RecipeResolver } from './components/recipe/recipe-item/recipe-resolver.
     NewRecipeComponent,
     RecipeItemComponent,
     RecipeDialogComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

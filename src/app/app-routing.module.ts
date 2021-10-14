@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './components/auth/auth.component';
 import { EditIngredientComponent } from './components/ingredient/edit-ingredient/edit-ingredient.component';
 import { IngredientItemComponent } from './components/ingredient/ingredient-item/ingredient-item.component';
 import { IngredientResolver } from './components/ingredient/ingredient-item/ingredient-resolver.service';
@@ -30,6 +31,7 @@ const routes: Routes = [
     component: RecipeItemComponent,
     resolve: { recipe: RecipeResolver },
   },
+  { path: 'login', component: AuthComponent },
   { path: 'ingredient', component: IngredientComponent },
   { path: 'ingredient/new', component: NewIngredientComponent },
   {
