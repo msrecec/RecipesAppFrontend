@@ -15,4 +15,6 @@ a {
 .navbar_div {
   margin: 0 auto;
   width: 90% !important;
+  display: flex;
+  justify-content: space-between;
 }

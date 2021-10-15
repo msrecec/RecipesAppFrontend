@@ -44,6 +44,7 @@ export class AuthService {
         catchError(this.handleError),
         tap((resData) => {
           this.handleAuthentication(resData.token);
+          this.router.navigate(['/']);
         })
       );
   }
@@ -57,12 +58,12 @@ export class AuthService {
 
   logout() {
     this.jwt.next(new JWT(''));
-    this.router.navigate(['/auth']);
     localStorage.removeItem('jwt');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
+    this.router.navigate(['/login']);
   }
 
   autoLogin() {
