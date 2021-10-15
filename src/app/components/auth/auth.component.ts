@@ -1,4 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -10,16 +11,25 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class AuthComponent implements OnInit {
   username: string = '';
   password: string = '';
+  error: string = '';
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
   onLogin() {
-    this.authService
-      .login(this.username, this.password)
-      .subscribe((resData) => {
+    let authObs: Observable<{ token: string }>;
+
+    authObs = this.authService.login(this.username, this.password);
+
+    authObs.subscribe(
+      (resData) => {
         console.log(resData);
-      });
+        this.error = '';
+      },
+      (errorMessage) => {
+        this.error = errorMessage;
+      }
+    );
   }
 }

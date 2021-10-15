@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
+import { AuthGuard } from './components/guards/auth.guard';
 import { EditIngredientComponent } from './components/ingredient/edit-ingredient/edit-ingredient.component';
 import { IngredientItemComponent } from './components/ingredient/ingredient-item/ingredient-item.component';
 import { IngredientResolver } from './components/ingredient/ingredient-item/ingredient-resolver.service';
@@ -19,41 +20,67 @@ import { ShoppingListComponent } from './components/shopping-list/shopping-list.
 
 const routes: Routes = [
   { path: '', redirectTo: 'recipe', pathMatch: 'full' },
-  { path: 'recipe', component: RecipeComponent },
-  { path: 'recipe/new', component: NewRecipeComponent },
+  { path: 'recipe', component: RecipeComponent, canActivate: [AuthGuard] },
+  {
+    path: 'recipe/new',
+    component: NewRecipeComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'recipe/edit/:id',
     component: EditRecipeComponent,
+    canActivate: [AuthGuard],
     resolve: { recipe: RecipeResolver },
   },
   {
     path: 'recipe/:id',
     component: RecipeItemComponent,
+    canActivate: [AuthGuard],
     resolve: { recipe: RecipeResolver },
   },
   { path: 'login', component: AuthComponent },
-  { path: 'ingredient', component: IngredientComponent },
-  { path: 'ingredient/new', component: NewIngredientComponent },
+  {
+    path: 'ingredient',
+    component: IngredientComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'ingredient/new',
+    component: NewIngredientComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'ingredient/edit/:id',
     component: EditIngredientComponent,
+    canActivate: [AuthGuard],
     resolve: { ingredient: IngredientResolver },
   },
   {
     path: 'ingredient/:id',
     component: IngredientItemComponent,
+    canActivate: [AuthGuard],
     resolve: { ingredient: IngredientResolver },
   },
-  { path: 'shopping-list', component: ShoppingListComponent },
-  { path: 'shopping-list/new', component: NewShoppingListComponent },
+  {
+    path: 'shopping-list',
+    component: ShoppingListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'shopping-list/new',
+    component: NewShoppingListComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'shopping-list/edit/:id',
     component: EditShoppingListComponent,
+    canActivate: [AuthGuard],
     resolve: { shoppingList: ShoppingListResolver },
   },
   {
     path: 'shopping-list/:id',
     component: ShoppingListItemComponent,
+    canActivate: [AuthGuard],
     resolve: { shoppingList: ShoppingListResolver },
   },
 ];

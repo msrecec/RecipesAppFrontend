@@ -80,7 +80,9 @@ export class AuthService {
     this.jwt.next(jwt);
 
     const expirationDuration =
-      jwt.expirationDate.getTime() - new Date().getTime();
+      new Date(jwt.expirationDate).getTime() - new Date().getTime();
+
+    console.log(expirationDuration);
 
     this.autoLogout(expirationDuration);
   }
