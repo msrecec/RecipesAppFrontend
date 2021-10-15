@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, throwError } from 'rxjs';
+import { catchError, first, tap } from 'rxjs/operators';
 import { UserLoginCommand } from 'src/app/command/user/user-login-command';
 import { JWT } from 'src/app/model/auth/jwt';
 
@@ -14,8 +14,25 @@ export class AuthService {
   registerURL: string = 'http://localhost:8080/api/user/register';
 
   jwt: BehaviorSubject<JWT> = new BehaviorSubject<JWT>(new JWT(''));
+  private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  register(
+    username: string,
+    password: string,
+    firstName: string,
+    lastName: string
+  ) {
+    return this.http
+      .post<any>(this.registerURL, {
+        username: username,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+      })
+      .pipe(catchError(this.handleError));
+  }
 
   login(username: string, password: string) {
     return this.http
@@ -24,11 +41,72 @@ export class AuthService {
         new UserLoginCommand(username, password)
       )
       .pipe(
+        catchError(this.handleError),
         tap((resData) => {
-          const jwt = new JWT(resData.token);
-          console.log(jwt);
-          this.jwt.next(jwt);
+          this.handleAuthentication(resData.token);
         })
       );
+  }
+
+  private handleAuthentication(token: string) {
+    const jwt = new JWT(token);
+    this.jwt.next(jwt);
+    localStorage.setItem('jwt', JSON.stringify(jwt));
+    this.autoLogout(+jwt.payload.exp);
+  }
+
+  logout() {
+    this.jwt.next(new JWT(''));
+    this.router.navigate(['/auth']);
+    localStorage.removeItem('jwt');
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
+  }
+
+  autoLogin() {
+    const item = localStorage.getItem('jwt');
+
+    const jwt: JWT = JSON.parse(
+      item !== null ? item : JSON.stringify(new JWT(''))
+    );
+
+    if (jwt.jwt == '') {
+      return;
+    }
+
+    this.jwt.next(jwt);
+
+    const expirationDuration =
+      jwt.expirationDate.getTime() - new Date().getTime();
+
+    this.autoLogout(expirationDuration);
+  }
+
+  autoLogout(expirationDuration: number) {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, expirationDuration);
+  }
+
+  private handleError(errorRes: HttpErrorResponse) {
+    let errorMessage = 'An unknown error occurred';
+
+    if (
+      !errorRes.error ||
+      !errorRes.error.apierror ||
+      !errorRes.error.apierror.message
+    ) {
+      return throwError(errorMessage);
+    }
+
+    switch (errorRes.error.apierror.message) {
+      case 'Bad credentials':
+        errorMessage = 'Invalid username or password';
+        break;
+    }
+
+    return throwError(errorMessage);
   }
 }
