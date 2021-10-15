@@ -10,7 +10,7 @@ import { RecipeComponent } from './components/recipe/recipe.component';
 import { IngredientComponent } from './components/ingredient/ingredient.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IngredientItemComponent } from './components/ingredient/ingredient-item/ingredient-item.component';
 import { IngredientResolver } from './components/ingredient/ingredient-item/ingredient-resolver.service';
 import { NewIngredientComponent } from './components/ingredient/new-ingredient/new-ingredient.component';
@@ -27,6 +27,7 @@ import { RecipeItemComponent } from './components/recipe/recipe-item/recipe-item
 import { RecipeDialogComponent } from './components/recipe/recipe-item/recipe-dialog/recipe-dialog.component';
 import { RecipeResolver } from './components/recipe/recipe-item/recipe-resolver.service';
 import { AuthComponent } from './components/auth/auth.component';
+import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,16 @@ import { AuthComponent } from './components/auth/auth.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [IngredientResolver, ShoppingListResolver, RecipeResolver],
+  providers: [
+    IngredientResolver,
+    ShoppingListResolver,
+    RecipeResolver,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
